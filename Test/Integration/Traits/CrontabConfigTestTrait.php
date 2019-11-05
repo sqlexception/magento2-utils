@@ -47,7 +47,7 @@ trait CrontabConfigTestTrait
         $config = ObjectManager::getInstance()->create(\Magento\Cron\Model\ConfigInterface::class);
         $jobs = $config->getJobs();
         $this->assertSame(
-            ltrim(self::$jobClass, '\\'),
+            ltrim(self::$jobInstance, '\\'),
             $jobs[self::$jobGroup][self::$jobName]['instance']
         );
     }
@@ -61,7 +61,7 @@ trait CrontabConfigTestTrait
         $jobs = $config->getJobs();
         $jobObject = ObjectManager::getInstance()->get($jobs[self::$jobGroup][self::$jobName]['instance']);
         $this->assertInstanceOf(
-            self::$jobClass,
+            self::$jobInstance,
             $jobObject
         );
     }
@@ -75,12 +75,12 @@ trait CrontabConfigTestTrait
         $jobs = $config->getJobs();
         $jobObject = ObjectManager::getInstance()->get($jobs[self::$jobGroup][self::$jobName]['instance']);
         $this->assertInstanceOf(
-            self::$jobClass,
+            self::$jobInstance,
             $jobObject
         );
         $this->assertTrue(
             method_exists(
-                self::$jobClass,
+                self::$jobInstance,
                 self::$jobMethod
             )
         );
